@@ -278,20 +278,24 @@ public class CompressionAttempt {
 						if (nextLine.coordinates.get(0).getX() < nextLine.coordinates.get(nextLine.coordinates.size() - 1).getX()) {
 							// If first x is to the left of the last one
 							allCmds.add(new DrawingCommand(Direction.RIGHT, nextLine.length() - 1, true, nextLine.colour));
+							currentCoordinate = nextLine.coordinates.get(nextLine.coordinates.size() - 1);
 						} else {
 							allCmds.add(new DrawingCommand(Direction.LEFT, nextLine.length() - 1, true, nextLine.colour));
+							currentCoordinate = nextLine.coordinates.get(0);
 						}
 					} else if (nextLine.coordinates.get(0).getY() != nextLine.coordinates.get(nextLine.coordinates.size() - 1).getY()) {
 						System.out.println("ome1");
 						if (nextLine.coordinates.get(0).getY() < nextLine.coordinates.get(nextLine.coordinates.size() - 1).getY()) {
 							// If first y is above of the last one
 							allCmds.add(new DrawingCommand(Direction.DOWN, nextLine.length() - 1, true, nextLine.colour));
+							currentCoordinate = nextLine.coordinates.get(nextLine.coordinates.size() - 1);
 						} else {
 							allCmds.add(new DrawingCommand(Direction.UP, nextLine.length() - 1, true, nextLine.colour));
+							currentCoordinate = nextLine.coordinates.get(0);
 						}
 					}
 
-
+					entryLines.remove(nextLine);
 					nextLine = searchHead ? nextLine.headChild : searchTail ? nextLine.tailChild : null;
 
 

@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e408a988-ab56-4d53-8f4b-d61c86398d1e" name="Default" comment="" />
+    <list default="true" id="e408a988-ab56-4d53-8f4b-d61c86398d1e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$CompressionLine.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$CompressionLine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$DrawDirection.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$DrawDirection.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$PathResponse.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$PathResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$Section.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt$Section.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmAssignment1/net/brychan/Drawing/Compression/CompressionAttempt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/test-images/test-image6" afterPath="$PROJECT_DIR$/Images/test-images/test-image6" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/test-instructions" afterPath="$PROJECT_DIR$/Images/test-instructions" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttempt.java" afterPath="$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttempt.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/net/brychan/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="17" column="110" lean-forward="false" selection-start-line="17" selection-start-column="110" selection-end-line="17" selection-end-column="110" />
+            <state relative-caret-position="510">
+              <caret line="34" column="42" lean-forward="true" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -24,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompressionAttempt.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CompressionAttempt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttempt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="138" column="34" lean-forward="true" selection-start-line="138" selection-start-column="34" selection-end-line="138" selection-end-column="34" />
+            <state relative-caret-position="381">
+              <caret line="280" column="104" lean-forward="false" selection-start-line="280" selection-start-column="104" selection-end-line="280" selection-end-column="104" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,6 +157,9 @@
       <replace />
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -167,8 +181,8 @@
         <option value="$PROJECT_DIR$/src/net/brychan/Drawing/Drawing.java" />
         <option value="$PROJECT_DIR$/src/net/brychan/Drawing/Coordinate.java" />
         <option value="$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttemptRLE.java" />
-        <option value="$PROJECT_DIR$/src/net/brychan/Main.java" />
         <option value="$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttempt.java" />
+        <option value="$PROJECT_DIR$/src/net/brychan/Main.java" />
       </list>
     </option>
   </component>
@@ -182,6 +196,7 @@
     <option name="width" value="1920" />
     <option name="height" value="1200" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -325,12 +340,12 @@
       <workItem from="1508682310253" duration="40345000" />
       <workItem from="1508792989282" duration="18864000" />
       <workItem from="1508844540248" duration="60560000" />
-      <workItem from="1509034345153" duration="11881000" />
+      <workItem from="1509034345153" duration="14334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141756000" />
+    <option name="totallyTimeSpent" value="144209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -345,7 +360,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26347825" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -763,20 +778,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/brychan/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttempt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="110" lean-forward="false" selection-start-line="17" selection-start-column="110" selection-end-line="17" selection-end-column="110" />
+        <state relative-caret-position="381">
+          <caret line="280" column="104" lean-forward="false" selection-start-line="280" selection-start-column="104" selection-end-line="280" selection-end-column="104" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/brychan/Drawing/Compression/CompressionAttempt.java">
+    <entry file="file://$PROJECT_DIR$/src/net/brychan/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="138" column="34" lean-forward="true" selection-start-line="138" selection-start-column="34" selection-end-line="138" selection-end-column="34" />
+        <state relative-caret-position="510">
+          <caret line="34" column="42" lean-forward="true" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
