@@ -13,6 +13,7 @@ public class CompressionAttempt {
 	private Image image;
 
 	private boolean searching;
+	private ArrayList<String> commands;
 
 	private int score; // lowest wins
 	private HashSet<CompressionAttempt> children;
@@ -20,9 +21,10 @@ public class CompressionAttempt {
 	public CompressionAttempt(Image image) {
 		this.image = image;
 
+
 		searching = true;
 		children = new HashSet<>();
-
+		commands = new ArrayList<>();
 
 		/*
 		 *	STEP 0 - BACKGROUND COLOUR
@@ -286,21 +288,30 @@ public class CompressionAttempt {
 						if (connectionCoordinate.getX() < distantCoordinate.getX()) {
 							// If first x is to the left of the last one
 							allCmds.add(new DrawingCommand(Direction.RIGHT, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = distantCoordinate;
+							if (new DrawingCommand(Direction.RIGHT, nextLine.length() - 1, true, nextLine.colour).toString().equals("left 11 1")) {
+								System.out.println("OURERROR::: here1");
+							}
 						} else {
 							allCmds.add(new DrawingCommand(Direction.LEFT, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = connectionCoordinate;
+							if (new DrawingCommand(Direction.LEFT, nextLine.length() - 1, true, nextLine.colour).toString().equals("left 11 1")) {
+								System.out.println("OURERROR::: here2");
+							}
 						}
 					} else if (connectionCoordinate.getY() != distantCoordinate.getY()) {
 						if (connectionCoordinate.getY() < distantCoordinate.getY()) {
 							// If first y is above of the last one
 							allCmds.add(new DrawingCommand(Direction.DOWN, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = distantCoordinate;
+							if (new DrawingCommand(Direction.DOWN, nextLine.length() - 1, true, nextLine.colour).toString().equals("left 11 1")) {
+								System.out.println("OURERROR::: here3");
+							}
 						} else {
 							allCmds.add(new DrawingCommand(Direction.UP, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = connectionCoordinate;
+							if (new DrawingCommand(Direction.UP, nextLine.length() - 1, true, nextLine.colour).toString().equals("left 11 1")) {
+								System.out.println("OURERROR::: here4");
+							}
 						}
 					}
+					currentCoordinate = distantCoordinate;
 
 					entryLines.remove(nextLine);
 
@@ -361,12 +372,17 @@ public class CompressionAttempt {
 
 		System.out.println("------------");
 
+		this.commands.add(Integer.toString(image.getHeight()));
+		this.commands.add(Integer.toString(image.getWidth()));
+		this.commands.add(bgColour < 10 ? Integer.toString(bgColour) : bgColour == 10 ? "a" : bgColour == 11 ? "b" : bgColour == 12 ? "c" : bgColour == 13 ? "d" : bgColour == 14 ? "e" : "f");
 
-		System.out.println(image.getWidth());
 		System.out.println(image.getHeight());
+		System.out.println(image.getWidth());
+
 		System.out.println(bgColour < 10 ? bgColour : bgColour == 10 ? "a" : bgColour == 11 ? "b" : bgColour == 12 ? "c" : bgColour == 13 ? "d" : bgColour == 14 ? "e" : "f");
 		for (DrawingCommand cmd : allCmds) {
 			System.out.println(cmd);
+			this.commands.add(cmd.toString());
 		}
 		System.out.println("-> CMD COUNT: " + allCmds.size());
 
@@ -382,8 +398,6 @@ public class CompressionAttempt {
 
 		System.out.println("COMPRESSION COMPLETE.");
 	}
-
-
 
 
 	private PathResponse commandsFromToDraw(Coordinate origin, CompressionLine line) {
@@ -407,7 +421,7 @@ public class CompressionAttempt {
 				DrawingCommand cmdY = null;
 
 				// Move along X axis to entry point...
-				Coordinate entryCoord = line.tail.relative(Direction.RIGHT);
+				Coordinate entryCoord = line.coordinates.get(line.coordinates.size() - 1).relative(Direction.RIGHT);
 
 				boolean isAdjacentY = Math.abs(origin.getY() - line.tail.getY()) == 1 && origin.getX() == line.tail.getX();
 
@@ -416,6 +430,9 @@ public class CompressionAttempt {
 					Direction cmdXDirection = entryCoord.getX() > origin.getX() ? Direction.RIGHT : Direction.LEFT;
 					int cmdXDistance = Math.abs(entryCoord.getX() - origin.getX());
 					cmdX = new DrawingCommand(cmdXDirection, cmdXDistance, false, line.colour);
+					if (cmdX.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here5");
+					}
 				}
 
 				// If they're not in the same column...
@@ -423,9 +440,20 @@ public class CompressionAttempt {
 					Direction cmdYDirection = entryCoord.getY() > origin.getY() ? Direction.DOWN : Direction.UP;
 					int cmdYDistance = Math.abs(entryCoord.getY() - origin.getY());
 					cmdY = new DrawingCommand(cmdYDirection, cmdYDistance, isAdjacentY, line.colour);
+					if (cmdY.toString().equals("left 11 2")) {
+						System.out.println("OURERROR::: here6");
+					}
 				}
 
 				cmdLine = new DrawingCommand(Direction.LEFT, line.length() - (isAdjacentY ? 1 : 0), true, line.colour);
+
+
+				if (cmdLine.toString().equals("left 11 1")) {
+					System.out.println("OURERROR::: here7: " + entryCoord.toString());
+					System.out.println("OURERROR::: here7: " + cmdLine.toString());
+					System.out.println("OURERROR::: here7: " + line.coordinates.get(0).toString());
+					System.out.println("OURERROR::: here7: " + line.coordinates.get(line.length() - 1).toString());
+				}
 
 				cCmd.add(cmdX);
 				cCmd.add(cmdY);
@@ -459,6 +487,9 @@ public class CompressionAttempt {
 					Direction cmdXDirection = entryCoord.getX() > origin.getX() ? Direction.RIGHT : Direction.LEFT;
 					int cmdXDistance = Math.abs(entryCoord.getX() - origin.getX());
 					cmdX = new DrawingCommand(cmdXDirection, cmdXDistance, isAdjacentX, line.colour);
+					if (cmdX.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here8");
+					}
 				}
 
 				// If they're not in the same column...
@@ -466,9 +497,15 @@ public class CompressionAttempt {
 					Direction cmdYDirection = entryCoord.getY() > origin.getY() ? Direction.DOWN : Direction.UP;
 					int cmdYDistance = Math.abs(entryCoord.getY() - origin.getY());
 					cmdY = new DrawingCommand(cmdYDirection, cmdYDistance, false, line.colour);
+					if (cmdY.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here9");
+					}
 				}
 
 				cmdLine = new DrawingCommand(Direction.UP, line.length() - (isAdjacentX ? 1 : 0), true, line.colour);
+				if (cmdLine.toString().equals("left 11 1")) {
+					System.out.println("OURERROR::: here10");
+				}
 
 				cCmd.add(cmdX);
 				cCmd.add(cmdY);
@@ -503,6 +540,9 @@ public class CompressionAttempt {
 					Direction cmdXDirection = entryCoord.getX() > origin.getX() ? Direction.RIGHT : Direction.LEFT;
 					int cmdXDistance = Math.abs(entryCoord.getX() - origin.getX());
 					cmdX = new DrawingCommand(cmdXDirection, cmdXDistance, false, line.colour);
+					if (cmdX.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here1");
+					}
 				}
 
 				// If they're not in the same column...
@@ -510,9 +550,15 @@ public class CompressionAttempt {
 					Direction cmdYDirection = entryCoord.getY() > origin.getY() ? Direction.DOWN : Direction.UP;
 					int cmdYDistance = Math.abs(entryCoord.getY() - origin.getY());
 					cmdY = new DrawingCommand(cmdYDirection, cmdYDistance, isAdjacentY, line.colour);
+					if (cmdY.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here1");
+					}
 				}
 
 				cmdLine = new DrawingCommand(Direction.RIGHT, line.length() - (isAdjacentY ? 1 : 0), true, line.colour);
+				if (cmdLine.toString().equals("left 11 1")) {
+					System.out.println("OURERROR::: here1");
+				}
 
 				cCmd.add(cmdX);
 				cCmd.add(cmdY);
@@ -546,6 +592,9 @@ public class CompressionAttempt {
 					Direction cmdXDirection = entryCoord.getX() > origin.getX() ? Direction.RIGHT : Direction.LEFT;
 					int cmdXDistance = Math.abs(entryCoord.getX() - origin.getX());
 					cmdX = new DrawingCommand(cmdXDirection, cmdXDistance, isAdjacentX, line.colour);
+					if (cmdX.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here1");
+					}
 				}
 
 				// If they're not in the same column...
@@ -553,9 +602,15 @@ public class CompressionAttempt {
 					Direction cmdYDirection = entryCoord.getY() > origin.getY() ? Direction.DOWN : Direction.UP;
 					int cmdYDistance = Math.abs(entryCoord.getY() - origin.getY());
 					cmdY = new DrawingCommand(cmdYDirection, cmdYDistance, false, line.colour);
+					if (cmdY.toString().equals("left 11 1")) {
+						System.out.println("OURERROR::: here1");
+					}
 				}
 
 				cmdLine = new DrawingCommand(Direction.DOWN, line.length() - (isAdjacentX ? 1 : 0), true, line.colour);
+				if (cmdLine.toString().equals("left 11 1")) {
+					System.out.println("OURERROR::: here1");
+				}
 
 				cCmd.add(cmdX);
 				cCmd.add(cmdY);
@@ -573,6 +628,10 @@ public class CompressionAttempt {
 		}
 
 		return new PathResponse(section, link, commands);
+	}
+
+	public ArrayList<String> getCommands() {
+		return commands;
 	}
 
 	private boolean coversImage(int bgColour, HashSet<CompressionLine> lines) {

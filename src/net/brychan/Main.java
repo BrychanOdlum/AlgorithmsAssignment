@@ -5,31 +5,68 @@ import net.brychan.Drawing.Coordinate;
 import net.brychan.Drawing.Direction;
 import net.brychan.Drawing.Drawing;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 public class Main {
 
     public static void main(String[] args) {
 	    // write your code here
 
-		boolean compression = false;
+		boolean compression = true;
 
 		if (compression) {
 
-			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image4";
+			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image5";
 			//String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/pixel-art/pixel-art6";
 
-			Image i = new Image(file);
-			CompressionAttempt ca = new CompressionAttempt(i);
+			for (int i = 0; i < 100; i++) {
+				Image im1 = new Image(file);
+				CompressionAttempt ca = new CompressionAttempt(im1);
+
+				try {
+					new File("/Users/brychan/Documents/School/AlgorithmAssignment1/Images/tempoutput").delete();
+					BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/brychan/Documents/School/AlgorithmAssignment1/Images/tempoutput"));
+
+					for (String line : ca.getCommands()) {
+						writer.write(line);
+						writer.newLine();
+						writer.flush();
+					}
+
+					Drawing d = new Drawing("/Users/brychan/Documents/School/AlgorithmAssignment1/Images/tempoutput");
+
+					Image im2 = d.draw();
+
+					boolean matches = true;
+
+					for (int y = 0; y < im1.getPixels().length; y++) {
+						for (int x = 0; x < im1.getPixels().length; x++) {
+							if (im1.getPixel(new Coordinate(y, x)) != im2.getPixel(new Coordinate(y, x))) {
+								matches = false;
+							}
+						}
+					}
+					System.out.println(matches + " on pass " + i);
+					if (matches) {
+						break;
+					}
+
+
+				} catch (Exception e) {
+
+
+				}
+
+				//Drawing d = new Drawing(file);
+			}
+
 
 		} else {
 
 			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-instructions";
 
-			Direction dir = Direction.LEFT;
-			dir = dir.opposite();
-			System.out.println(dir.toString());
-
-			Coordinate cor = new Coordinate(3, 1);
-			System.out.println(cor.relative(dir));
 
 			Drawing d = new Drawing(file);
 
