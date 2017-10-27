@@ -1,0 +1,51 @@
+Represent a picture as the height and width, and a sequence of drawing
+commands to build it. Also has an initial background colour. Each command
+starts at the current location and draws a certain number of spaces to get
+to the next location. If a colour is given, it paints over the spaces
+in-between, including the final destination space, but not the initial
+space. Otherwise, it just updates the position. If the distance is 0, than
+the command just updates the colour of the current position, and does not
+update the position.
+
+The starting position is at (0,0), the top, left corner of the drawing.
+
+For example, starting with a 4x2 picture of all 0's
+
+00
+00
+00
+00
+
+the command 'down 2 1' changes the image as follows and leaves the current
+position at (2,0) -- down 2 and over none
+
+00
+10
+10
+00
+
+Then 'right 1 2' changes the position to (2,1) and updates the image
+
+00
+10
+12
+00
+
+then 'up 1' leaves the image unchanged, but updated the current position to (1,1)
+finally 'up 1 9` makes the position (0,1) -- the top right -- and the image
+
+09
+10
+12
+00
+
+If we then execute 'down 0 4' the position is not updated, so we stay at the
+top right.
+
+04
+10
+12
+00
+
+NB commands with distance 0 are the *only* commands that can change the
+colour of the pixel that they start on.
