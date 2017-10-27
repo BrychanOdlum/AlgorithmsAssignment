@@ -100,10 +100,8 @@ public class Drawing {
 		Image image = new Image(height, width, background);
 
 		Coordinate coordinate = new Coordinate(0, 0);
-		int coujter = 0;
 
 		for (DrawingCommand command : commands) {
-			coujter++;
 			Direction direction = command.getDirection();
 			int distance = command.getDistance();
 			int colour = command.getColour();
@@ -130,11 +128,8 @@ public class Drawing {
 					distance--;
 				}
 			} catch (PixelOutOfBounds ex) {
-				System.out.println("OUT OF BOUNDS: " + coordinate.toString());
-				System.out.println(coujter + ": " + command.toString());
 				throw new BadCommand();
 			}
-
 
 		}
 
@@ -145,5 +140,7 @@ public class Drawing {
 		// A simple test to read in an file of drawing commands and print it out.
 		Drawing d = new Drawing(args[0]);
 		System.out.print(d.toString());
+
+
 	}
 }

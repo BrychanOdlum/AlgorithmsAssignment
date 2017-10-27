@@ -15,16 +15,26 @@ public class Main {
     public static void main(String[] args) {
 	    // write your code here
 
+
+		String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image4";
+		Image im1 = new Image(file);
+
+		try {
+			System.out.println(im1.compress().draw().toString());
+		} catch (Exception e) {
+
+		}
+
+		/*
 		boolean compression = true;
-
-
 
 		if (compression) {
 
-			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image5";
-			//String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/pixel-art/pixel-art6";
+			//String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image3";
+			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/pixel-art/pixel-art2";
 
-			for (int i = 0; i < 100; i++) {
+			int successes = 0;
+			for (int i = 0; i < 500; i++) {
 				Image im1 = new Image(file);
 				CompressionAttempt ca = new CompressionAttempt(im1);
 
@@ -53,9 +63,8 @@ public class Main {
 					}
 					System.out.println(matches + " on pass " + i);
 					if (matches) {
-						break;
+						successes++;
 					}
-
 
 				} catch (Exception e) {
 
@@ -64,6 +73,8 @@ public class Main {
 
 				//Drawing d = new Drawing(file);
 			}
+
+			System.out.println(successes + " / 100");
 
 
 		} else {
@@ -86,6 +97,8 @@ public class Main {
 			System.out.print(d.toString());
 
 		}
+
+		*/
 
 
     }

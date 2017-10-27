@@ -1,7 +1,9 @@
 package net.brychan;
 
+import net.brychan.Drawing.Compression.CompressionAttempt;
 import net.brychan.Drawing.Coordinate;
 import net.brychan.Drawing.Drawing;
+import net.brychan.Drawing.DrawingCommand;
 import net.brychan.Drawing.Exceptions.PixelOutOfBounds;
 
 import java.io.*;
@@ -129,9 +131,32 @@ public class Image {
 	// the next best 20%, and so on.
 	public Drawing compress() {
 
+		CompressionAttempt bestCA = null;
 
+		System.out.print("Compressing, hold on.");
+		for (int i = 0; i < 100; i++) {
+			if (i % 20 == 0) {
+				System.out.print(".");
+			}
 
-		return null;
+			CompressionAttempt ca = new CompressionAttempt(this);
+			if (bestCA == null || ca.drawingCommands.size() < bestCA.drawingCommands.size()) {
+				bestCA = ca;
+			}
+		}
+
+		System.out.println("");
+
+		for(String command : bestCA.getCommands()) {
+			System.out.println(command);
+		}
+
+		Drawing drawing = new Drawing(width, height, bestCA.bgColour);
+		for (DrawingCommand command : bestCA.drawingCommands) {
+			drawing.addCommand(command);
+		}
+
+		return drawing;
 	}
 
 	// This is the standard 4-bit EGA colour scheme, where the numbers represent
