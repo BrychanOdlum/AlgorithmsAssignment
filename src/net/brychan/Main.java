@@ -1,6 +1,7 @@
 package net.brychan;
 
 import net.brychan.Drawing.Compression.CompressionAttempt;
+import net.brychan.Drawing.Compression.CompressionAttemptRLE;
 import net.brychan.Drawing.Coordinate;
 import net.brychan.Drawing.Direction;
 import net.brychan.Drawing.Drawing;
@@ -15,6 +16,8 @@ public class Main {
 	    // write your code here
 
 		boolean compression = true;
+
+
 
 		if (compression) {
 
