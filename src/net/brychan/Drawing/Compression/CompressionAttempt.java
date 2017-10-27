@@ -256,51 +256,72 @@ public class CompressionAttempt {
 				entryLines.remove(bestLine);
 
 
-				boolean searchTail = bestLine.tailChild != null;
-				boolean searchHead = bestLine.headChild != null;
-				CompressionLine nextLine = searchHead ? bestLine.headChild : bestLine.tailChild;
+				CompressionLine lastLine = bestLine;
+				CompressionLine nextLine = bestLine.headChild != null ? bestLine.headChild : bestLine.tailChild;
+				Coordinate connectionCoordinate = null;
+				if (nextLine != null) {
+					if (nextLine.head.equals(lastLine.head) || nextLine.head.equals(lastLine.tail)) {
+						connectionCoordinate = nextLine.head;
+					} else if (nextLine.tail.equals(lastLine.head) || nextLine.tail.equals(lastLine.tail)) {
+						connectionCoordinate = nextLine.tail;
+					}
+				}
 
 
 				ArrayList<CompressionLine> alreadyDrawn = new ArrayList<>();
 
 				while (nextLine != null) {
 
-					System.out.println("error01" + nextLine.headChild);
 					if (alreadyDrawn.contains(nextLine)) {
 						nextLine = null;;
 						continue;
 					}
 					alreadyDrawn.add(nextLine);
 
+					Coordinate distantCoordinate = nextLine.head.equals(connectionCoordinate) ? nextLine.tail : nextLine.head;
 
-					if (nextLine.coordinates.get(0).getX() != nextLine.coordinates.get(nextLine.coordinates.size() - 1).getX()) {
-						System.out.println("ome1");
-						if (nextLine.coordinates.get(0).getX() < nextLine.coordinates.get(nextLine.coordinates.size() - 1).getX()) {
+					System.out.println("in here" + connectionCoordinate.toString() + ", " + distantCoordinate.toString());
+
+					if (connectionCoordinate.getX() != distantCoordinate.getX()) {
+						if (connectionCoordinate.getX() < distantCoordinate.getX()) {
 							// If first x is to the left of the last one
 							allCmds.add(new DrawingCommand(Direction.RIGHT, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = nextLine.coordinates.get(nextLine.coordinates.size() - 1);
+							currentCoordinate = distantCoordinate;
 						} else {
 							allCmds.add(new DrawingCommand(Direction.LEFT, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = nextLine.coordinates.get(0);
+							currentCoordinate = connectionCoordinate;
 						}
-					} else if (nextLine.coordinates.get(0).getY() != nextLine.coordinates.get(nextLine.coordinates.size() - 1).getY()) {
-						System.out.println("ome1");
-						if (nextLine.coordinates.get(0).getY() < nextLine.coordinates.get(nextLine.coordinates.size() - 1).getY()) {
+					} else if (connectionCoordinate.getY() != distantCoordinate.getY()) {
+						if (connectionCoordinate.getY() < distantCoordinate.getY()) {
 							// If first y is above of the last one
 							allCmds.add(new DrawingCommand(Direction.DOWN, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = nextLine.coordinates.get(nextLine.coordinates.size() - 1);
+							currentCoordinate = distantCoordinate;
 						} else {
 							allCmds.add(new DrawingCommand(Direction.UP, nextLine.length() - 1, true, nextLine.colour));
-							currentCoordinate = nextLine.coordinates.get(0);
+							currentCoordinate = connectionCoordinate;
 						}
 					}
 
 					entryLines.remove(nextLine);
-					nextLine = searchHead ? nextLine.headChild : searchTail ? nextLine.tailChild : null;
 
 
-					System.out.println(nextLine);
+					if (nextLine.headChild != null && nextLine.headChild.equals(lastLine)) {
+						nextLine.headChild = null;
+					}
+					if (nextLine.tailChild != null && nextLine.tailChild.equals(lastLine)) {
+						nextLine.tailChild = null;
+					}
 
+
+					lastLine = nextLine;
+					nextLine = nextLine.headChild != null ? nextLine.headChild : nextLine.tailChild;
+					if (nextLine != null) {
+						if (nextLine.head.equals(lastLine.head) || nextLine.head.equals(lastLine.tail)) {
+							connectionCoordinate = nextLine.head;
+						} else if (nextLine.tail.equals(lastLine.head) || nextLine.tail.equals(lastLine.tail)) {
+							connectionCoordinate = nextLine.tail;
+						}
+					}
 
 
 					System.out.println("-----");
@@ -340,10 +361,14 @@ public class CompressionAttempt {
 
 		System.out.println("------------");
 
+
+		System.out.println(image.getWidth());
+		System.out.println(image.getHeight());
+		System.out.println(bgColour < 10 ? bgColour : bgColour == 10 ? "a" : bgColour == 11 ? "b" : bgColour == 12 ? "c" : bgColour == 13 ? "d" : bgColour == 14 ? "e" : "f");
 		for (DrawingCommand cmd : allCmds) {
 			System.out.println(cmd);
 		}
-		System.out.println("CMD COUNT: " + allCmds.size());
+		System.out.println("-> CMD COUNT: " + allCmds.size());
 
 
 
@@ -597,8 +622,6 @@ public class CompressionAttempt {
 
 			head = coordinates.get(0);
 			tail = coordinates.get(coordinates.size() - 1);
-
-			System.out.println("Head: " + head.toString() + ", tail: " + tail.toString());
 		}
 
 		private DrawDirection getEntryDirection() {

@@ -10,13 +10,12 @@ public class Main {
     public static void main(String[] args) {
 	    // write your code here
 
-		boolean compression = true;
+		boolean compression = false;
 
 		if (compression) {
 
-
-			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image6";
-			//String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/pixel-art/pixel-art4";
+			String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image4";
+			//String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/pixel-art/pixel-art6";
 
 			Image i = new Image(file);
 			CompressionAttempt ca = new CompressionAttempt(i);
