@@ -1,14 +1,6 @@
 package net.brychan;
 
-import net.brychan.Drawing.Compression.CompressionAttempt;
-import net.brychan.Drawing.Compression.CompressionAttemptRLE;
-import net.brychan.Drawing.Coordinate;
-import net.brychan.Drawing.Direction;
 import net.brychan.Drawing.Drawing;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 
 public class Main {
 
@@ -16,11 +8,13 @@ public class Main {
 	    // write your code here
 
 
-		String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image4";
+
+		String file = "/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-image3";
 		Image im1 = new Image(file);
 
 		try {
-			System.out.println(im1.compress().draw().toString());
+			Drawing drawing = im1.compress();
+			//im1.toPNG("/Users/brychan/Documents/School/AlgorithmAssignment1/Images/test-images/test-imag4");
 		} catch (Exception e) {
 
 		}

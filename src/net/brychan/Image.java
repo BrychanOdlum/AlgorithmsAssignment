@@ -134,25 +134,26 @@ public class Image {
 		CompressionAttempt bestCA = null;
 
 		System.out.print("Compressing, hold on.");
-		for (int i = 0; i < 100; i++) {
-			if (i % 20 == 0) {
+		//for (int i = 0; i < 100; i++) {
+		//	if (i % 20 == 0) {
 				System.out.print(".");
-			}
+		//	}
 
 			CompressionAttempt ca = new CompressionAttempt(this);
-			if (bestCA == null || ca.drawingCommands.size() < bestCA.drawingCommands.size()) {
+			if (bestCA == null || ca.getDrawingCommands().size() < bestCA.getDrawingCommands().size()) {
 				bestCA = ca;
 			}
-		}
+		//}
 
 		System.out.println("");
 
 		for(String command : bestCA.getCommands()) {
 			System.out.println(command);
 		}
+		System.out.println(bestCA.getDrawingCommands().size() + " commands");
 
-		Drawing drawing = new Drawing(width, height, bestCA.bgColour);
-		for (DrawingCommand command : bestCA.drawingCommands) {
+		Drawing drawing = new Drawing(width, height, bestCA.getBgColour());
+		for (DrawingCommand command : bestCA.getDrawingCommands()) {
 			drawing.addCommand(command);
 		}
 
